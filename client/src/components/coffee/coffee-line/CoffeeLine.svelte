@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	import { coffeeStore } from '$store/coffeeStore';
 	import CoffeeList from '../coffee-list/CoffeeList.svelte';
@@ -8,12 +8,29 @@
 
 	const { coffeeList, updateCoffeeFromApi, isCoffeeLoading } = coffeeStore();
 
+	let timerId: number | undefined;
+
+	const updateInterval = () => {
+		if (timerId) {
+			clearInterval(timerId);
+		}
+		timerId = setInterval(() => {
+			updateCoffeeFromApi();
+		}, 1000 * 30);
+	};
+
 	const handler = () => {
+		updateInterval();
 		updateCoffeeFromApi();
 	};
 
 	onMount(() => {
+		updateInterval();
 		updateCoffeeFromApi();
+	});
+
+	onDestroy(() => {
+		clearInterval(timerId);
 	});
 </script>
 
