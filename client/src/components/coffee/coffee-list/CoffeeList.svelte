@@ -1,27 +1,27 @@
 <script lang="ts">
-	import type { Coffee } from "$types/api/coffeeApi";
-	import CoffeeCard from "../coffee-card/CoffeeCard.svelte";
+	import type { Coffee } from '$types/coffee';
+	import CoffeeCard from '../coffee-card/CoffeeCard.svelte';
 
-  export let coffeeList: Coffee[]
+	export let coffeeList: Coffee[];
 </script>
 
 <div class="coffee-list">
-  {#each coffeeList as coffee}
-    <div class="coffee-list__container">
-      <CoffeeCard coffee={coffee} />
-    </div>
-  {/each}
+	{#each coffeeList as coffee}
+		<div class="coffee-list__container">
+			<CoffeeCard {coffee} />
+		</div>
+	{/each}
 </div>
 
 <style lang="scss">
-  .coffee-list {
-    display: flex;
-    flex-direction: column;
+	.coffee-list {
+		display: flex;
+		flex-direction: column;
 
-    &__container {
-      & + & {
-        margin-top: 30px;
-      }
-    }
-  }
+		&__container {
+			& + & {
+				margin-top: 30px;
+			}
+		}
+	}
 </style>

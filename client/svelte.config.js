@@ -14,13 +14,13 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			// this will match a file
-			'$components': 'src/components',
-			'$store': 'src/store',
-			'$types': 'src/types',
-			'$utils': 'src/utils',
+			$components: 'src/components',
+			$store: 'src/store',
+			$types: 'src/types',
+			$utils: 'src/utils',
 			'$api-methods': 'src/api-methods',
-			'$adapters': 'src/adapters',
-		},
+			$adapters: 'src/adapters'
+		}
 	}
 };
 

@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const transport = axios.create({
-  baseURL: "http://127.0.0.1:3000",
-  headers: {
-    'Content-Type': 'application/json',
-  },
+	baseURL: 'http://127.0.0.1:3000',
+	headers: {
+		'Content-Type': 'application/json'
+	}
 });

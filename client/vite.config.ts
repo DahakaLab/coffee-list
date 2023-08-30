@@ -6,7 +6,7 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		svg({
-			type: 'component',
-		}),
-	],
+			type: 'component'
+		})
+	]
 });
