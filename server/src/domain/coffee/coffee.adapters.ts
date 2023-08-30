@@ -15,4 +15,6 @@ export const rawDataToCoffee = ({
   notes: rawCoffeeData.notes,
   intensifier: rawCoffeeData.intensifier,
   image: rawCoffeeImg.file,
+  image_owner: rawCoffeeImg.owner,
+  image_tags: rawCoffeeImg.tags,
 });

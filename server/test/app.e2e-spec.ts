@@ -22,8 +22,8 @@ describe('AppController (e2e)', () => {
   it('/coffee/1 (GET) Ok', async () => {
     const res = await request(app.getHttpServer()).get('/coffee/1').expect(200);
 
-    const keys = ['blend_name', 'origin', 'variety', 'notes', 'intensifier', 'image']
-    keys.forEach((key) => expect(res.body).toHaveProperty(key))
+    const keys = ['blend_name', 'origin', 'variety', 'notes', 'intensifier', 'image', 'image_owner', 'image_tags'];
+    keys.forEach((key) => expect(res.body).toHaveProperty(key));
     return res;
   });
 

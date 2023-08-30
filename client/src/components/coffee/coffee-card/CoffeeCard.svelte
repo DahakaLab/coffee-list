@@ -10,7 +10,7 @@
 
 <div class="coffee-card">
   <div class="coffee-card__img">
-    <Image src={coffee.image}/>
+    <Image src={coffee.image} alt={coffee.imageOwner} placeholder={coffee.imageTags}/>
     <span>{coffee.intensifier}</span>
   </div>
   <div class="coffee-card__content-section">

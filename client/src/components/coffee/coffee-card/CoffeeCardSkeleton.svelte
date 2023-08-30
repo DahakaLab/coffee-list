@@ -5,7 +5,6 @@
     <div class="coffee-card-skeleton__row"></div>
     <div class="coffee-card-skeleton__row"></div>
   </div>
-
   <div class="coffee-card-skeleton__bottom-row"></div>
 </div>
 

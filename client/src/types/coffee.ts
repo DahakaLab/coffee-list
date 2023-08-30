@@ -5,4 +5,6 @@ export interface Coffee {
   notes: string[];
   intensifier: string;
   image: string;
+  imageOwner: string;
+  imageTags: string;
 }
