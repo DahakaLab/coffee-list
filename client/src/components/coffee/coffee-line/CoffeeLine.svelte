@@ -4,6 +4,7 @@
   import { coffeeStore } from "$store/coffeeStore";
 	import CoffeeList from "../coffee-list/CoffeeList.svelte";
 	import ButtonRounded from "$components/common/button-rounded/ButtonRounded.svelte";
+	import CoffeeCardSkeleton from "../coffee-card/CoffeeCardSkeleton.svelte";
 
   const { coffeeList, updateCoffeeFromApi, isCoffeeLoading } = coffeeStore();
 
@@ -25,7 +26,15 @@
 
   <div class="coffee-line__content-section">
     {#if $coffeeList}
-      <CoffeeList coffeeList={$coffeeList} />
+      <div class="coffee-line__content-wrapper">
+        <CoffeeList coffeeList={$coffeeList} />
+      </div>
+      
+    {/if}
+    {#if $isCoffeeLoading}
+      <div class="coffee-line__content-wrapper">
+        <CoffeeCardSkeleton />
+      </div>
     {/if}
   </div>
 
@@ -47,7 +56,7 @@
       margin-bottom: 25px;
     }
 
-    &__content-section {
+    &__content-wrapper {
       margin-bottom: 25px;
     }
 
