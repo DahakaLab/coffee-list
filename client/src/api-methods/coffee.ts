@@ -1,4 +1,4 @@
-import type { Coffee } from "$types/api/coffee";
+import type { Coffee } from "$types/api/coffeeApi";
 import { transport } from "$utils/transport";
 
 const baseUrl = (path = "") => `/coffee${path}`;

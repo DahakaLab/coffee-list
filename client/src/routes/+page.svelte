@@ -1,5 +1,5 @@
 <script>
-	import CoffeeLine from "../coffee/coffee-line/CoffeeLine.svelte";
+	import CoffeeLine from "$components/coffee/coffee-line/CoffeeLine.svelte";
 
 </script>
 <svelte:head>

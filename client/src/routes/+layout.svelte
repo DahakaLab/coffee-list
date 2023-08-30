@@ -1,5 +1,16 @@
 <script lang="ts">
-  import '$lib/normalize.css';
+  import '$lib/css/normalize.css';
+  import '$lib/css/scrollbar.css';
 </script>
 
-<slot />
+<div class="layout">
+  <slot />
+</div>
+
+<style lang="scss">
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+</style>

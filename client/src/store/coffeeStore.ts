@@ -1,10 +1,10 @@
-import type { Coffee } from "$types/api/coffee";
+import type { Coffee } from "$types/coffee";
 import { storeFactory } from "$utils/storeFactory"
 import { coffeeMethods } from "$api-methods/coffee";
+import { getCoffee } from "$adapters/coffee/coffee";
 
 const {
   useStore: useCoffeeStore,
-  useNewDataEvent: useCoffeeNewDataEvent,
   useCreateEffect: useCoffeeCreateEffect,
 } = storeFactory<Coffee[]>([]);
 
@@ -14,22 +14,19 @@ const {
 } = storeFactory<boolean>(false);
 
 const coffeeList = useCoffeeStore();
-const setNewCustomer = useCoffeeNewDataEvent();
 
 const isCoffeeLoading = useIsLoadingStore();
 const setIsLoading = useIsLoadingNewDataEvent();
 
-const handleGetCoffeeItem = async () => {
+const handleGetCoffeeItem = async (): Promise<Coffee> => {
   setIsLoading(true);
   const currentCoffeeCounts = coffeeList.getState().length;
   const coffeeItem = currentCoffeeCounts + 1;
   const coffee = await coffeeMethods.getItem(coffeeItem);
   setIsLoading(false);
-  return coffee;
+  return getCoffee(coffee);
 }
-const updateCoffeeFromApi = useCoffeeCreateEffect<Coffee>(handleGetCoffeeItem, (state, payload) => {
-  state.push(payload);
-});
+const updateCoffeeFromApi = useCoffeeCreateEffect<Coffee>(handleGetCoffeeItem, (state, payload) => [...state, payload]);
 
 export const coffeeStore = () => {
   return {

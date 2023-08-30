@@ -1,4 +1,4 @@
-export interface Coffee {
+export interface CoffeeApi {
   blend_name: string;
   origin: string;
   variety: string;
