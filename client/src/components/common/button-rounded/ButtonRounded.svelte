@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PlusSVG from '$lib/svg/plus.svg?component';
 
-	export let disabled: boolean = false;
+	export let disabled = false;
 </script>
 
 <button on:click {disabled} class="{$$restProps.class || ''} rounded-btn">

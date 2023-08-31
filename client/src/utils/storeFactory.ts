@@ -13,7 +13,8 @@ export const storeFactory = <State>(initValue: State) => {
 	};
 
 	const useCreateEffect = <Payload = State, Params = void>(
-		handler: Function,
+		// eslint-disable-next-line
+		handler: (...args: any) => any,
 		reducer: Reducer<State, Payload>
 	) => {
 		const effect = createEffect<Params, Payload, AxiosError>(handler);
