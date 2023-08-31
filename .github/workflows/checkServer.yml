@@ -30,11 +30,11 @@ jobs:
         with:
           node-version: '20.4.0'
       - name: Install deps
-        working-directory: ./client
+        working-directory: ./server
         run: npm ci
         shell: bash
       - name: Test check
-        working-directory: ./client
+        working-directory: ./server
         run: npm run test
   test-e2e-check-server:
     needs: [test-check-server]
@@ -47,9 +47,9 @@ jobs:
         with:
           node-version: '20.4.0'
       - name: Install deps
-        working-directory: ./client
+        working-directory: ./server
         run: npm ci
         shell: bash
       - name: Test check
-        working-directory: ./client
+        working-directory: ./server
         run: npm run test:e2e
