@@ -1,0 +1,38 @@
+name: Check client
+
+on: push
+
+jobs:
+  lint-client:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+      - name: Use node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.4.0'
+      - name: Install deps
+        working-directory: ./client
+        run: npm ci
+        shell: bash
+      - name: Lint
+        working-directory: ./client
+        run: npm run lint
+  type-scheck-client:
+    needs: [lint-client]
+    runs-on: self-hosted
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+      - name: Use node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.4.0'
+      - name: Install deps
+        working-directory: ./client
+        run: npm ci
+        shell: bash
+      - name: Type check
+        working-directory: ./client
+        run: npm run check

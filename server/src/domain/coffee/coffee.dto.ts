@@ -25,11 +25,17 @@ export class RawCoffeeImgDto {
   file: string;
 
   license: string;
+
+  @IsString()
   owner: string;
+
   width: number;
   height: number;
   filter: string;
+
+  @IsString()
   tags: string;
+
   tagMode: string;
 }
 
@@ -51,4 +57,10 @@ export class CoffeeDataDto {
 
   @IsUrl()
   image: string;
+
+  @IsString()
+  image_owner: string;
+
+  @IsString()
+  image_tags: string;
 }

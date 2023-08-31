@@ -12,20 +12,27 @@ export class CacheService {
   }
 
   async onApplicationBootstrap() {
+    await this.client.connect();
     this.client.on('error', (err) => {
       throw new Error(err);
     });
     this.logger.log('Redis on error listener has been added.');
   }
 
+  async onModuleDestroy() {
+    if (this.client.isOpen) {
+      await this.client.disconnect();
+    }
+  }
+
   async set(key: string, value: any) {
     try {
-      await this.client.connect();
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
 
       const res = await this.client.hSet('cache', key, JSON.stringify(value));
       await this.client.expire('cache', 30 * 60);
-
-      await this.client.disconnect();
 
       this.logger.log(`New value cached with key '${key}'`);
 
@@ -37,12 +44,12 @@ export class CacheService {
 
   async get(key: string) {
     try {
-      await this.client.connect();
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
 
       const value = await this.client.hGet('cache', key);
       await this.client.expire('cache', 30 * 60);
-
-      await this.client.disconnect();
 
       return JSON.parse(value);
     } catch (err) {

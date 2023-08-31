@@ -1,9 +1,9 @@
-name: Lint server
+name: Check server
 
 on: push
 
 jobs:
-  lint:
+  lint-server:
     runs-on: self-hosted
     steps:
       - name: Checkout branch
