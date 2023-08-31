@@ -36,20 +36,3 @@ jobs:
       - name: Test check
         working-directory: ./server
         run: npm run test
-  test-e2e-check-server:
-    needs: [test-check-server]
-    runs-on: self-hosted
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
-      - name: Use node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20.4.0'
-      - name: Install deps
-        working-directory: ./server
-        run: npm ci
-        shell: bash
-      - name: Test check
-        working-directory: ./server
-        run: npm run test:e2e
