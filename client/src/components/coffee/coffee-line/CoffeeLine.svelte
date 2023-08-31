@@ -6,31 +6,52 @@
 	import ButtonRounded from '$components/common/button-rounded/ButtonRounded.svelte';
 	import CoffeeCardSkeleton from '../coffee-card/CoffeeCardSkeleton.svelte';
 
+	const NUMBER_OF_INTERVALS = 500;
+	const INTERVAL_MS = 1000 * 30;
+
 	const { coffeeList, updateCoffeeFromApi, isCoffeeLoading } = coffeeStore();
 
 	let timerId: number | undefined;
 
-	const updateInterval = () => {
+	const removeInterval = () => {
 		if (timerId) {
 			clearInterval(timerId);
+			timerId = undefined;
 		}
-		timerId = setInterval(() => {
+	};
+
+	const getCoffeeItem = () => {
+		if (!$isCoffeeLoading) {
 			updateCoffeeFromApi();
-		}, 1000 * 30);
+		}
+	};
+
+	const updateInterval = () => {
+		removeInterval();
+
+		if ($coffeeList.length < NUMBER_OF_INTERVALS) {
+			timerId = setInterval(() => {
+				if ($coffeeList.length >= NUMBER_OF_INTERVALS) {
+					removeInterval();
+				}
+
+				getCoffeeItem();
+			}, INTERVAL_MS);
+		}
 	};
 
 	const handler = () => {
 		updateInterval();
-		updateCoffeeFromApi();
+		getCoffeeItem();
 	};
 
 	onMount(() => {
 		updateInterval();
-		updateCoffeeFromApi();
+		getCoffeeItem();
 	});
 
 	onDestroy(() => {
-		clearInterval(timerId);
+		removeInterval();
 	});
 </script>
 
